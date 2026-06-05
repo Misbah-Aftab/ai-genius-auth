@@ -7,6 +7,8 @@ The goal is to ensure that only authorized users can use specific services and t
 
 
 
+
+
 🔐 What This Project Does
 
 •	Verifies a user's identity through a secure login process
@@ -30,6 +32,8 @@ The goal is to ensure that only authorized users can use specific services and t
 
 
 
+
+
 👥 User Roles and Permissions
 
 •	Free_User — can only access the basic free AI model endpoint
@@ -37,6 +41,10 @@ The goal is to ensure that only authorized users can use specific services and t
 •	Premium_User — can access both free and premium AI model endpoints
 
 •	Admin — has full access including administrative operations like purging cache
+
+
+
+
 
 
 
@@ -58,11 +66,17 @@ The goal is to ensure that only authorized users can use specific services and t
 
 
 
+
+
+
 🔄 How Token Refresh Works
 
 Since access tokens expire after 15 minutes, the refresh endpoint reads the refresh token from the secure cookie, verifies it, and checks whether it exists in the database.
 The database acts as a whitelist for valid refresh tokens. When a user logs out, the refresh token is removed from the database, making it invalid even if it has not yet expired. 
 If verification is successful, a new access token is generated and returned.
+
+
+
 
 
 
@@ -77,6 +91,8 @@ If verification is successful, a new access token is generated and returned.
 •	Run npm start to start the server or npm run dev for development mode with auto-reload
 
 •	Import postman_collection.json into Postman to test the full workflow
+
+
 
 
 
@@ -100,6 +116,9 @@ The following workflow was tested and verified using Postman:
 
 
 
+
+
+
 🛡️ Security Features
 
 •	All passwords are hashed with bcrypt using 10 salt rounds before being saved to the database
@@ -115,6 +134,9 @@ The following workflow was tested and verified using Postman:
 •	JWT payload only contains id, email, and role — no sensitive data is stored in the token
 
 •	Centralized error handling returns clean JSON error messages with correct HTTP status codes
+
+
+
 
 
 
