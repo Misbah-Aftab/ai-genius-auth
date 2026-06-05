@@ -35,44 +35,76 @@ The goal is to ensure that only authorized users can use specific services and t
 📡 API Endpoints
 
 •	POST /api/auth/register — create a new user account
+
 •	POST /api/auth/login — login and receive access and refresh tokens
+
 •	POST /api/auth/refresh — get a new access token using the refresh token stored in the cookie
+
 •	POST /api/auth/logout — remove the refresh token from the database and clear the cookie
+
 •	GET /api/ai/free-model — open to all logged-in users
+
 •	POST /api/ai/premium-model — Premium_User and Admin only
+
 •	DELETE /api/ai/purge-cache — Admin only
 
 🔄 How Token Refresh Works
+
+
 Since access tokens expire after 15 minutes, the refresh endpoint reads the refresh token from the secure cookie, verifies it, and checks whether it exists in the database.
 The database acts as a whitelist for valid refresh tokens. When a user logs out, the refresh token is removed from the database, making it invalid even if it has not yet expired. 
 If verification is successful, a new access token is generated and returned.
 
 ⚙️ How to Run Locally
+
+
 •	Clone the repository and open it in your terminal
+
 •	Run npm install to install all dependencies
+
 •	Copy .env.example to .env and fill in MONGO_URI, JWT_SECRET, JWT_ACCESS_EXPIRES, and JWT_REFRESH_EXPIRES
+
 •	Run npm start to start the server or npm run dev for development mode with auto-reload
+
 •	Import postman_collection.json into Postman to test the full workflow
 
 🧪 Testing Workflow
+
+
 The following workflow was tested and verified using Postman:
+
 •	Registering users with different roles
+
 •	Logging in and receiving both access and refresh tokens
+
 •	Accessing the free AI model as any logged-in user
+
 •	Attempting premium access as a Free_User and receiving a 403 Forbidden response
+
 •	Accessing premium features as Admin and receiving a successful response
+
 •	Generating a new access token using the refresh endpoint after the original token expires
 
 🛡️ Security Features
+
+
 •	All passwords are hashed with bcrypt using 10 salt rounds before being saved to the database
+
 •	All secrets and config values are stored in a .env file and never hardcoded in the source code
+
 •	The .env file is added to .gitignore to protect sensitive information
+
 •	Refresh token is stored in an httpOnly, secure, sameSite cookie to prevent XSS attacks
+
 •	Refresh tokens are verified against the database whitelist on every refresh request
+
 •	JWT payload only contains id, email, and role — no sensitive data is stored in the token
+
 •	Centralized error handling returns clean JSON error messages with correct HTTP status codes
 
 🛠️ Tech Stack
+
+
 Node.js, Express.js, MongoDB with Mongoose, jsonwebtoken for JWT, bcryptjs for password hashing, and dotenv for environment variable management.
 The project follows the MVC structure to keep the code organized and maintainable.
 
