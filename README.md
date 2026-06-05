@@ -4,6 +4,8 @@ The platform allows different types of users to access premium AI text and image
 The goal is to ensure that only authorized users can use specific services and that unauthorized access is completely prevented.
 
 
+
+
 🔐 What This Project Does
 •	Verifies a user's identity through a secure login process
 
@@ -24,12 +26,16 @@ The goal is to ensure that only authorized users can use specific services and t
 •	Returns proper 401 Unauthorized or 403 Forbidden responses for invalid, expired, or missing tokens
 
 
+
+
 👥 User Roles and Permissions
 •	Free_User — can only access the basic free AI model endpoint
 
 •	Premium_User — can access both free and premium AI model endpoints
 
 •	Admin — has full access including administrative operations like purging cache
+
+
 
 📡 API Endpoints
 
@@ -47,11 +53,15 @@ The goal is to ensure that only authorized users can use specific services and t
 
 •	DELETE /api/ai/purge-cache — Admin only
 
+
+
 🔄 How Token Refresh Works
 
 Since access tokens expire after 15 minutes, the refresh endpoint reads the refresh token from the secure cookie, verifies it, and checks whether it exists in the database.
 The database acts as a whitelist for valid refresh tokens. When a user logs out, the refresh token is removed from the database, making it invalid even if it has not yet expired. 
 If verification is successful, a new access token is generated and returned.
+
+
 
 ⚙️ How to Run Locally
 
@@ -64,6 +74,7 @@ If verification is successful, a new access token is generated and returned.
 •	Run npm start to start the server or npm run dev for development mode with auto-reload
 
 •	Import postman_collection.json into Postman to test the full workflow
+
 
 
 
@@ -83,6 +94,7 @@ The following workflow was tested and verified using Postman:
 
 •	Generating a new access token using the refresh endpoint after the original token expires
 
+
 🛡️ Security Features
 
 •	All passwords are hashed with bcrypt using 10 salt rounds before being saved to the database
@@ -98,6 +110,7 @@ The following workflow was tested and verified using Postman:
 •	JWT payload only contains id, email, and role — no sensitive data is stored in the token
 
 •	Centralized error handling returns clean JSON error messages with correct HTTP status codes
+
 
 🛠️ Tech Stack
 
