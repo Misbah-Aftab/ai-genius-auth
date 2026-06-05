@@ -5,6 +5,7 @@ The goal is to ensure that only authorized users can use specific services and t
 
 🔐 What This Project Does
 •	Verifies a user's identity through a secure login process
+
 •	Maintains user authentication using short-lived and long-lived tokens
 •	Controls access to AI features according to the user's role and subscription plan
 •	Registers users and stores their passwords securely using bcrypt hashing with 10 salt rounds
