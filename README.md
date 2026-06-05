@@ -13,18 +13,27 @@ The goal is to ensure that only authorized users can use specific services and t
 •	Controls access to AI features according to the user's role and subscription plan
 
 •	Registers users and stores their passwords securely using bcrypt hashing with 10 salt rounds
+
 •	Logs in users and returns two tokens — an Access Token (15 minutes) in the JSON response and a Refresh Token (7 days) in a secure httpOnly cookie so that client-side JavaScript cannot access it
+
 •	Protects API routes using a custom JWT middleware called protect that reads the Authorization header on every request
+
 •	Automatically issues a new Access Token when the old one expires via the refresh endpoint
+
 •	Restricts route access based on user role using a middleware factory called restrictTo
+
 •	Returns proper 401 Unauthorized or 403 Forbidden responses for invalid, expired, or missing tokens
 
 👥 User Roles and Permissions
+
 •	Free_User — can only access the basic free AI model endpoint
+
 •	Premium_User — can access both free and premium AI model endpoints
+
 •	Admin — has full access including administrative operations like purging cache
 
 📡 API Endpoints
+
 •	POST /api/auth/register — create a new user account
 •	POST /api/auth/login — login and receive access and refresh tokens
 •	POST /api/auth/refresh — get a new access token using the refresh token stored in the cookie
