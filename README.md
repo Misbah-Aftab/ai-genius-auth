@@ -95,6 +95,8 @@ The following workflow was tested and verified using Postman:
 •	Generating a new access token using the refresh endpoint after the original token expires
 
 
+
+
 🛡️ Security Features
 
 •	All passwords are hashed with bcrypt using 10 salt rounds before being saved to the database
@@ -110,6 +112,8 @@ The following workflow was tested and verified using Postman:
 •	JWT payload only contains id, email, and role — no sensitive data is stored in the token
 
 •	Centralized error handling returns clean JSON error messages with correct HTTP status codes
+
+
 
 
 🛠️ Tech Stack
