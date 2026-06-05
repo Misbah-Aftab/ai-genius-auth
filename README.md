@@ -5,10 +5,13 @@ The platform allows different types of users to access premium AI text and image
 The goal is to ensure that only authorized users can use specific services and that unauthorized access is completely prevented.
 
 🔐 What This Project Does
+
 •	Verifies a user's identity through a secure login process
 
 •	Maintains user authentication using short-lived and long-lived tokens
+
 •	Controls access to AI features according to the user's role and subscription plan
+
 •	Registers users and stores their passwords securely using bcrypt hashing with 10 salt rounds
 •	Logs in users and returns two tokens — an Access Token (15 minutes) in the JSON response and a Refresh Token (7 days) in a secure httpOnly cookie so that client-side JavaScript cannot access it
 •	Protects API routes using a custom JWT middleware called protect that reads the Authorization header on every request
