@@ -1,11 +1,10 @@
 🤖 AI-Genius Auth — Secure Authentication and Authorization System
-
 This project is the backend security module for a SaaS platform called AI-Genius, built using Node.js, Express.js, and MongoDB.
 The platform allows different types of users to access premium AI text and image generation models. Since AI models are expensive to run, the backend strictly controls who can access what by implementing JSON Web Tokens (JWT), bcrypt password hashing, and Role-Based Access Control (RBAC).
 The goal is to ensure that only authorized users can use specific services and that unauthorized access is completely prevented.
 
-🔐 What This Project Does
 
+🔐 What This Project Does
 •	Verifies a user's identity through a secure login process
 
 •	Maintains user authentication using short-lived and long-lived tokens
@@ -24,8 +23,8 @@ The goal is to ensure that only authorized users can use specific services and t
 
 •	Returns proper 401 Unauthorized or 403 Forbidden responses for invalid, expired, or missing tokens
 
-👥 User Roles and Permissions
 
+👥 User Roles and Permissions
 •	Free_User — can only access the basic free AI model endpoint
 
 •	Premium_User — can access both free and premium AI model endpoints
@@ -50,13 +49,11 @@ The goal is to ensure that only authorized users can use specific services and t
 
 🔄 How Token Refresh Works
 
-
 Since access tokens expire after 15 minutes, the refresh endpoint reads the refresh token from the secure cookie, verifies it, and checks whether it exists in the database.
 The database acts as a whitelist for valid refresh tokens. When a user logs out, the refresh token is removed from the database, making it invalid even if it has not yet expired. 
 If verification is successful, a new access token is generated and returned.
 
 ⚙️ How to Run Locally
-
 
 •	Clone the repository and open it in your terminal
 
@@ -68,8 +65,9 @@ If verification is successful, a new access token is generated and returned.
 
 •	Import postman_collection.json into Postman to test the full workflow
 
-🧪 Testing Workflow
 
+
+🧪 Testing Workflow
 
 The following workflow was tested and verified using Postman:
 
@@ -87,7 +85,6 @@ The following workflow was tested and verified using Postman:
 
 🛡️ Security Features
 
-
 •	All passwords are hashed with bcrypt using 10 salt rounds before being saved to the database
 
 •	All secrets and config values are stored in a .env file and never hardcoded in the source code
@@ -103,7 +100,6 @@ The following workflow was tested and verified using Postman:
 •	Centralized error handling returns clean JSON error messages with correct HTTP status codes
 
 🛠️ Tech Stack
-
 
 Node.js, Express.js, MongoDB with Mongoose, jsonwebtoken for JWT, bcryptjs for password hashing, and dotenv for environment variable management.
 The project follows the MVC structure to keep the code organized and maintainable.
