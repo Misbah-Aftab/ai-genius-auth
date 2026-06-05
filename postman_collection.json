@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "AI-Genius Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register Admin",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/auth/register",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"email\": \"admin@test.com\", \"password\": \"pass1234\", \"role\": \"Admin\"}"}
+      }
+    },
+    {
+      "name": "Register Premium User",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/auth/register",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"email\": \"premium@test.com\", \"password\": \"pass1234\", \"role\": \"Premium_User\"}"}
+      }
+    },
+    {
+      "name": "Register Free User",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/auth/register",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"email\": \"free@test.com\", \"password\": \"pass1234\", \"role\": \"Free_User\"}"}
+      }
+    },
+    {
+      "name": "Login Free User",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/auth/login",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"email\": \"free@test.com\", \"password\": \"pass1234\"}"}
+      }
+    },
+    {
+      "name": "Login Admin",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/auth/login",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"email\": \"admin@test.com\", \"password\": \"pass1234\"}"}
+      }
+    },
+    {
+      "name": "Access Free Model",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:5000/api/ai/free-model",
+        "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}]
+      }
+    },
+    {
+      "name": "Access Premium Model as Free User (403)",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/ai/premium-model",
+        "header": [{"key": "Authorization", "value": "Bearer {{freeUserToken}}"}]
+      }
+    },
+    {
+      "name": "Access Premium Model as Admin (200)",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/ai/premium-model",
+        "header": [{"key": "Authorization", "value": "Bearer {{adminToken}}"}]
+      }
+    },
+    {
+      "name": "Purge Cache Admin Only",
+      "request": {
+        "method": "DELETE",
+        "url": "http://localhost:5000/api/ai/purge-cache",
+        "header": [{"key": "Authorization", "value": "Bearer {{adminToken}}"}]
+      }
+    },
+    {
+      "name": "Refresh Token",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:5000/api/auth/refresh",
+        "header": []
+      }
+    }
+  ]
+}
