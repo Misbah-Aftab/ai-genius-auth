@@ -1,4 +1,5 @@
 🤖 AI-Genius Auth — Secure Authentication and Authorization System
+
 This project is the backend security module for a SaaS platform called AI-Genius, built using Node.js, Express.js, and MongoDB.
 The platform allows different types of users to access premium AI text and image generation models. Since AI models are expensive to run, the backend strictly controls who can access what by implementing JSON Web Tokens (JWT), bcrypt password hashing, and Role-Based Access Control (RBAC).
 The goal is to ensure that only authorized users can use specific services and that unauthorized access is completely prevented.
@@ -7,6 +8,7 @@ The goal is to ensure that only authorized users can use specific services and t
 
 
 🔐 What This Project Does
+
 •	Verifies a user's identity through a secure login process
 
 •	Maintains user authentication using short-lived and long-lived tokens
@@ -29,6 +31,7 @@ The goal is to ensure that only authorized users can use specific services and t
 
 
 👥 User Roles and Permissions
+
 •	Free_User — can only access the basic free AI model endpoint
 
 •	Premium_User — can access both free and premium AI model endpoints
